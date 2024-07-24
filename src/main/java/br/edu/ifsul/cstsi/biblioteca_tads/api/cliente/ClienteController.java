@@ -1,6 +1,9 @@
 package br.edu.ifsul.cstsi.biblioteca_tads.api.cliente;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -14,6 +17,10 @@ import java.util.stream.Collectors;
 public class ClienteController {
     @Autowired //injeção de dependência
     private ClienteService service;
+
+    public ResponseEntity<Page<ClienteDTO>> selectAll(@PageableDefault(size = 50, sort = "nome") Pageable paginacao) {
+        return ResponseEntity.ok(service.getClientes(paginacao).map(ClienteDTO::new));
+    }
 
     @PostMapping
     public ResponseEntity<URI> insert(@RequestBody ClienteDTO clienteDTO, UriComponentsBuilder uriBuilder){

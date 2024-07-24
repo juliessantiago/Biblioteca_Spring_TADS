@@ -1,6 +1,10 @@
 package br.edu.ifsul.cstsi.biblioteca_tads.api.cliente;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -12,9 +16,14 @@ public class ClienteService {
     @Autowired //injeção de dependência
     private ClienteRepository repository;
 
+    public Page<Cliente> getClientes(Pageable paginacao) {
+        return repository.findAll(paginacao);
+    }
+
     public Cliente getProdutoById(Long codigo) {
         return repository.findByCodigo(codigo);
     }
+
     public List<Cliente> getClienteByNome(String nome) {
         return repository.findByNome(nome+"%");
     }
