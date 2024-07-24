@@ -16,7 +16,6 @@ public class ClienteController {
     private ClienteService service;
 
     @PostMapping
-
     public ResponseEntity<URI> insert(@RequestBody ClienteDTO clienteDTO, UriComponentsBuilder uriBuilder){
         var cliente = service.insert(new Cliente(
                 null,

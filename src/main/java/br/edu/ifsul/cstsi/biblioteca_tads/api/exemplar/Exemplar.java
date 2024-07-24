@@ -4,10 +4,11 @@ import br.edu.ifsul.cstsi.biblioteca_tads.api.cliente.Cliente;
 import jakarta.persistence.*;
 
 import java.util.List;
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="tipoExemplar")
 @Entity(name="Exemplar")
 @Table(name="exemplares")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="tipoExemplar")
+
 
 public class Exemplar {
     @Id
@@ -15,5 +16,4 @@ public class Exemplar {
     private int codigo;
 
     private String nome;
-    private int tipoExemplar;
 }

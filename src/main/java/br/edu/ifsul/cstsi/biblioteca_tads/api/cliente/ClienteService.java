@@ -12,7 +12,7 @@ public class ClienteService {
     @Autowired //injeção de dependência
     private ClienteRepository repository;
 
-    public Optional<Cliente> getProdutoById(Long id) {
+    public Cliente getProdutoById(Long codigo) {
         return repository.findByCodigo(codigo);
     }
     public List<Cliente> getClienteByNome(String nome) {
